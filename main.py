@@ -1,7 +1,4 @@
 import kivy
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.relativelayout import RelativeLayout
-from kivy.uix.scatterlayout import ScatterLayout
 
 kivy.require('1.0.6')  # replace with your current kivy version !
 
@@ -75,6 +72,8 @@ class InputButton(Button):
 class MyApp(App):
 
     def build(self):
+
+        self.title = "Neo-Phyt Badenfahrt 2023"
         # Set up the layout:
         layout = GridLayout(cols=5, rows=1, spacing=30, padding=30)
 
@@ -95,15 +94,12 @@ class MyApp(App):
         beepButton = Button(text="BEEP!", size=(50, 50))
         beepButton.bind(on_press=press_callback)
         wimg = Image(source='logo.png')
-        speedSlider = Slider(orientation='vertical', min=1, max=30, value=speed)
-        speedSlider.bind(on_touch_down=update_speed, on_touch_move=update_speed)
 
         # Add the UI elements to the layout:
         layout.add_widget(wimg)
         layout.add_widget(inputDisplay)
         layout.add_widget(outputControl)
         layout.add_widget(beepButton)
-        layout.add_widget(speedSlider)
 
         # Start flashing the LED
         Clock.schedule_once(flash, 1.0 / speed)
